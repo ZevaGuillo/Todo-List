@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("const closeModal = document.getElementById(\"close\");\r\nconst newProject = document.getElementById(\"newProject\");\r\nconst modal = document.getElementById(\"modal\");\r\nconst modalContainer = document.getElementById(\"modal-container\");\r\nconst searchBook = document.getElementById(\"search-book\");\r\n\r\n\r\nnewProject.addEventListener(\"click\", (e) => {\r\n  e.preventDefault();\r\n  modalOpen();\r\n});\r\n\r\nfunction modalOpen(){\r\n  modalContainer.style.opacity = \"1\";\r\n  modalContainer.style.visibility = \"visible\";\r\n  modal.classList.toggle(\"modal-close\");\r\n}\r\n\r\nfunction modalClose() {\r\n  modalContainer.style.opacity = \"0\";\r\n  modalContainer.style.visibility = \"hidden\";\r\n  modal.classList.toggle(\"modal-close\");\r\n  removeAlertForm();\r\n}\r\n\r\n\r\ncloseModal.addEventListener(\"click\", (e) => {\r\n  modalClose();\r\n});\r\n\r\nwindow.addEventListener(\"click\", (e) => {\r\n  if (e.target === modalContainer) {\r\n    modalClose();\r\n  }\r\n});\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ })
 
