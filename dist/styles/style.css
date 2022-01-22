@@ -217,6 +217,16 @@ p.link-text {
   transform: translateY(0%);
 }
 
+.alert {
+  padding: .2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 1.1rem;
+  background-color: #F26C6B;
+  border-radius: 1rem;
+  color: #F2E5E4;
+}
+
 .close {
   color: var(--text-primary);
   cursor: pointer;
