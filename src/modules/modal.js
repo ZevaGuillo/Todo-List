@@ -40,7 +40,6 @@ export default class Modal {
 
   removeAlertForm() {
     let div = this.modalchildren[2];
-    console.log(div);
     if (div !== undefined) {
       if (div.textContent === "Complete todos los campos") {
         this.modal.removeChild(div);

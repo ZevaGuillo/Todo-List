@@ -1,2 +1,3 @@
+import initMenu, * as viwManager from "./modules/view";
 
-import * as viwManager from "./modules/view";
+initMenu();
