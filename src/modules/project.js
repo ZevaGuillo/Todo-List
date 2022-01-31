@@ -1,3 +1,4 @@
+import Modal from "./modal";
 export default class Project {
   constructor(nameProject) {
     this.nameProject = nameProject;
@@ -33,6 +34,11 @@ export default class Project {
     let div = document.createElement("div");
     div.classList.add("add-todo");
     div.innerHTML = `<button class="button">Add Todo</button>`;
+    let modal = new Modal("modal-todo", "modal-container-todo");
+    div.addEventListener("click", (e) => {
+      modal.modalOpen();
+    });
+
     return div;
   }
 

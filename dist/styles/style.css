@@ -218,13 +218,13 @@ p.link-text {
 }
 
 .alert {
-  padding: .2rem;
+  padding: 0.2rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   font-size: 1.1rem;
-  background-color: #F26C6B;
+  background-color: #f26c6b;
   border-radius: 1rem;
-  color: #F2E5E4;
+  color: #f2e5e4;
 }
 
 .close {
@@ -275,19 +275,19 @@ p.link-text {
 }
 
 .button {
-    padding: .5rem 1rem;
-    background-color: #966BF2;
-    color: #F2E5E4;
-    font-size: 1.1rem;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: .3s;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
-  .button:hover {
-    background-color: #9EF277;
-    color: #262526;
-  }
+  padding: 0.5rem 1rem;
+  background-color: #966bf2;
+  color: #f2e5e4;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #9ef277;
+  color: #262526;
+}

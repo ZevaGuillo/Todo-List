@@ -2,8 +2,7 @@ import Modal from "./modal";
 import Project from "./project";
 const closeModal = document.getElementById("close");
 const newProject = document.getElementById("newProject");
-const modalNode = document.getElementById("modal");
-const modalContainer = document.getElementById("modal-container");
+
 const addProjectBtn = document.getElementById("form-addProject-btn");
 const nameProject = document.getElementById("nameProject");
 /* Project */
@@ -25,21 +24,11 @@ function initMenu() {
 }
 
 /* ---- MODAL ----- */
-const modal = new Modal(modalNode, modalContainer);
+const modal = new Modal("modal", "modal-container");
 
 newProject.addEventListener("click", (e) => {
   e.preventDefault();
   modal.modalOpen();
-});
-
-closeModal.addEventListener("click", (e) => {
-  modal.modalClose();
-});
-
-window.addEventListener("click", (e) => {
-  if (e.target === modalContainer) {
-    modal.modalClose();
-  }
 });
 
 addProjectBtn.addEventListener("click", (e) => {
