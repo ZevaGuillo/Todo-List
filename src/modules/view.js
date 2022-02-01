@@ -1,6 +1,6 @@
 import Modal from "./modal";
 import Project from "./project";
-const closeModal = document.getElementById("close");
+const listProjects = [];
 const newProject = document.getElementById("newProject");
 
 const addProjectBtn = document.getElementById("form-addProject-btn");
@@ -21,6 +21,8 @@ function initMenu() {
   initialMenu.appendChild(
     somedayProject.renderProjectItem("someday", "fa-book")
   );
+
+  console.log(todayProject.todosList == somedayProject.todosList);
 }
 
 /* ---- MODAL ----- */
@@ -38,7 +40,9 @@ addProjectBtn.addEventListener("click", (e) => {
     modal.alertForm();
   } else {
     let project = new Project(nameProject.value);
-    console.log(project);
+    listProjects.push(project);
+
+    console.log(listProjects);
     listProject.appendChild(project.renderProjectItem("project", "fa-tasks"));
     modal.modalClose();
   }

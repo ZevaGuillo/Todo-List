@@ -100,27 +100,23 @@
 
             <div class="modal-header">
                 <h2>New TODO</h2>
-                <div class="close" id="close"><i class="fas fa-times"></i></div>
+                <div class="close" id="close-todo"><i class="fas fa-times"></i></div>
             </div>
             <div class="form-container">
                 <form action="/" id="form" class="form">
 
                     <label>
                         Name
-                        <input type="text" name="title" id="nameProject" placeholder="Name Project" class="field"
+                        <input type="text" name="title" id="todo-name" placeholder="Name Project" class="field"
                             required>
                     </label>
                     <label>
-                        Name
-                        <input type="text" name="title" id="nameProject" placeholder="Name Project" class="field"
-                            required>
+                        Descripcion
+                        <textarea name="title" id="todo-descripcion" placeholder="Write a descripcion" class="field"
+                            required></textarea>
                     </label>
-                    <label>
-                        Name
-                        <input type="text" name="title" id="nameProject" placeholder="Name Project" class="field"
-                            required>
-                    </label>
-                    <button class="button" type="button" id="form-addProject-btn">Add</button>
+
+                    <button class="button" type="button" id="form-add-todo-btn">Add Todo</button>
 
                 </form>
 
