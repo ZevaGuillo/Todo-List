@@ -20,8 +20,6 @@ export default class Project {
     });
   }
 
-  addTodo() {}
-
   removeTodo() {}
 
   renderProjectItem(class1, classFas) {

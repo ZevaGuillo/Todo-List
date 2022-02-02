@@ -125,6 +125,37 @@
         </div>
     </div>
 
+    <!-- Modal para editar todos -->
+    <div class="modal-container" id="modal-container-todo-edit">
+        <div class="modal modal-close" id="modal-todo-edit">
+
+            <div class="modal-header">
+                <h2>EDIT TODO</h2>
+                <div class="close" id="close-todo"><i class="fas fa-times"></i></div>
+            </div>
+            <div class="form-container">
+                <form action="/" id="form" class="form">
+
+                    <label>
+                        Name
+                        <input type="text" name="title" id="todo-name" placeholder="Name Project" class="field"
+                            required>
+                    </label>
+                    <label>
+                        Descripcion
+                        <textarea name="title" id="todo-descripcion" placeholder="Write a descripcion" class="field"
+                            required></textarea>
+                    </label>
+
+                    <button class="button" type="button" id="form-save-todo-btn">Save Todo</button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
 
     <main id="main">
 

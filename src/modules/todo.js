@@ -3,6 +3,12 @@ export default class Todo {
   constructor(nameTodo) {
     this.nameTodo = nameTodo;
     this.description = "";
+    this.clickEdit;
+    this.modal = new Modal("modal-todo-edit", "modal-container-todo-edit");
+    this.saveTodoButton = document.getElementById("form-save-todo-btn");
+    this.saveTodoButton.addEventListener("click", (e) => {
+      this.saveTodo(e);
+    });
   }
 
   renderTodo() {
@@ -33,7 +39,7 @@ export default class Todo {
     let i = document.createElement("i");
     i.classList.add("fas", "fa-edit");
     i.addEventListener("click", (e) => {
-      this.editTodo();
+      this.editTodo(e);
     });
     return i;
   }
@@ -47,17 +53,33 @@ export default class Todo {
     return i;
   }
 
-  editTodo() {
-    let modal = new Modal("modal-todo", "modal-container-todo");
-    modal.modalOpen();
-    let elemts = modal.modalForm.children[0];
-    let inputs = [];
-    for (let e of elemts) {
-      if (e.classList.toString() === "field") {
-        inputs.push(e);
-      }
-    }
+  editTodo(e) {
+    this.modal.modalOpen();
+    let inputs = this.takeInputs();
+
+    this.clickEdit = e.target.parentNode.children[0].textContent;
     inputs[0].value = this.nameTodo;
     inputs[1].value = this.description;
+  }
+
+  takeInputs() {
+    let elemts = this.modal.modalForm.children[0];
+    let inputs = [];
+    for (let ele of elemts) {
+      if (ele.classList.toString() === "field") {
+        inputs.push(ele);
+      }
+    }
+
+    return inputs;
+  }
+
+  saveTodo(e) {
+    if (this.clickEdit === this.nameTodo) {
+      let inputs = this.takeInputs();
+
+      this.nameTodo = inputs[0].value;
+      this.description = inputs[1].value;
+    }
   }
 }
