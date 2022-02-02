@@ -19,6 +19,16 @@ export default class Modal {
     this.modalForm = this.modalchildren[1];
   }
 
+  formatModal() {
+    let formElements = this.modalForm.children[0];
+
+    for (let e of formElements) {
+      if (e.classList.toString() === "field") {
+        e.value = "";
+      }
+    }
+  }
+
   modalOpen() {
     this.modalContainer.style.opacity = "1";
     this.modalContainer.style.visibility = "visible";
@@ -29,6 +39,7 @@ export default class Modal {
     this.modalContainer.style.opacity = "0";
     this.modalContainer.style.visibility = "hidden";
     this.modal.classList.add("modal-close");
+    this.formatModal();
     this.removeAlertForm();
   }
 

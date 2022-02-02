@@ -13,6 +13,16 @@
   --bg-primary: #23232e;
   --bg-secondary: #141418;
 
+  --fa-check-double: #548dbf;
+
+  --fa-edit: #2fb38d;
+
+  --fa-trash: #e76c61;
+
+  --fa-check-double-light: #9ac3e7;
+  --fa-edit-light: #92dbc6;
+  --fa-trash-light: #e6a39d;
+
   --menu-width: 3rem;
   --padding-initial: 0.7rem;
   --padding-left-rigth: 2rem;
@@ -289,4 +299,34 @@ p.link-text {
 .button:hover {
   background-color: #9ef277;
   color: #262526;
+}
+
+.fa-check-double {
+  color: var(--fa-check-double);
+}
+
+.fa-check-double:hover {
+  color: var(--fa-check-double-light);
+}
+.fa-edit {
+  color: var(--fa-edit);
+}
+
+.fa-edit:hover {
+  color: var(--fa-edit-light);
+}
+
+.fa-trash {
+  color: var(--fa-trash);
+}
+
+.fa-trash:hover {
+  color: var(--fa-trash-light);
+}
+
+.todo {
+}
+
+.todo i {
+  margin-right: 1rem;
 }
