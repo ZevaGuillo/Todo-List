@@ -63,7 +63,7 @@ export default class Project {
   }
 
   createTodo() {
-    const newTodo = new Todo(this.inputTodoName.value);
+    const newTodo = new Todo(this.inputTodoName.value, this);
     newTodo.description = this.inputTodoDescription.value;
     this.todosList.push(newTodo);
   }
