@@ -9,6 +9,7 @@ export default class Todo {
     this.saveTodoButton = document.getElementById("form-save-todo-btn");
     this.saveTodoButton.addEventListener("click", (e) => {
       this.saveTodo(e);
+      this.project.reloadTodoList(this.project.nameProject);
     });
   }
 
@@ -16,13 +17,17 @@ export default class Todo {
     let div = document.createElement("div");
     div.classList.add("todo");
     div.innerHTML = `
-        <h3>${this.nameTodo}</h3>
-        <p>${this.description}</p>
-        
+        <div class="todo-content">
+          <h3>${this.nameTodo}</h3>
+          <p>${this.description}</p>
+        </div>
       `;
-    div.appendChild(this.createCheckButton());
-    div.appendChild(this.createEditButton());
-    div.appendChild(this.createDeleteButton());
+    let divButtons = document.createElement("div");
+
+    divButtons.appendChild(this.createCheckButton());
+    divButtons.appendChild(this.createEditButton());
+    divButtons.appendChild(this.createDeleteButton());
+    div.appendChild(divButtons);
 
     return div;
   }
@@ -31,7 +36,7 @@ export default class Todo {
     let i = document.createElement("i");
     i.classList.add("fas", "fa-check-double");
     i.addEventListener("click", (e) => {
-      console.log("Hecho");
+      e.target.parentNode.parentNode.classList.toggle("check");
     });
     return i;
   }
@@ -58,7 +63,8 @@ export default class Todo {
     this.modal.modalOpen();
     let inputs = this.takeInputs();
 
-    this.clickEdit = e.target.parentNode.children[0].textContent;
+    this.clickEdit =
+      e.target.parentNode.parentNode.children[0].children[0].textContent;
     inputs[0].value = this.nameTodo;
     inputs[1].value = this.description;
   }

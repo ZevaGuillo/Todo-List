@@ -45,7 +45,7 @@ body {
   height: 3rem;
   padding-left: var(--padding-left-rigth);
   padding-right: var(--padding-left-rigth);
-  background-color: rgb(83, 83, 82);
+  background-color: rgb(168, 168, 62);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,10 +88,15 @@ body {
 main {
   margin-left: var(--menu-width);
   padding: 3rem;
-  font-size: 2rem;
+  padding-top: 4rem;
   min-height: 100vh;
   max-height: 100vh;
   overflow-y: scroll;
+  text-align: center;
+}
+
+main h2 {
+  font-size: 2rem;
 }
 
 main::-webkit-scrollbar {
@@ -116,6 +121,8 @@ main::-webkit-scrollbar-thumb {
   transition: width 200ms ease;
   display: flex;
   flex-direction: column;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
 hr {
@@ -292,7 +299,6 @@ input:invalid:required {
 }
 
 input:valid {
-  border: 2px solid black;
 }
 
 .button {
@@ -337,8 +343,43 @@ input:valid {
 }
 
 .todo {
+  text-align: left;
+  margin: 1rem;
+  font-size: 1.5rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.check {
+  text-decoration: line-through;
+  opacity: 0.5;
+  box-shadow: rgba(199, 197, 197, 0.5) 3px 3px 6px 0px inset,
+    rgb(204, 219, 232) -3px -3px 6px 1px inset;
+}
+
+.check i {
+  color: #23232e;
+}
+
+.todo .todo-content {
+  padding-left: 1rem;
+  width: 80%;
+}
+
+.todo div {
 }
 
 .todo i {
+  font-size: 1.5rem;
   margin-right: 1rem;
+}
+
+.add-todo {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
 }

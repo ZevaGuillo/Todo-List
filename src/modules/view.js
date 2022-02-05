@@ -22,7 +22,8 @@ function initMenu() {
     somedayProject.renderProjectItem("someday", "fa-book")
   );
 
-  console.log(todayProject.todosList == somedayProject.todosList);
+  let newProject = new Project("Projects");
+  listProject.appendChild(newProject.renderProjectItem("project", "fa-tasks"));
 }
 
 /* ---- MODAL ----- */
@@ -34,15 +35,12 @@ newProject.addEventListener("click", (e) => {
 });
 
 addProjectBtn.addEventListener("click", (e) => {
-  console.log(nameProject.value);
-
   if (nameProject.value === "") {
     modal.alertForm();
   } else {
     let project = new Project(nameProject.value);
     listProjects.push(project);
 
-    console.log(listProjects);
     listProject.appendChild(project.renderProjectItem("project", "fa-tasks"));
     modal.modalClose();
   }

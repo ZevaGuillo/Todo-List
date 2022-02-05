@@ -4,6 +4,7 @@ export default class Project {
   constructor(nameProject) {
     this.nameProject = nameProject;
     this.todosList = [];
+    this.todosElement;
     this.contentElement = document.getElementById("main");
     this.modal = new Modal("modal-todo", "modal-container-todo");
 
@@ -13,8 +14,7 @@ export default class Project {
     this.buttonAddTodo.addEventListener("click", (e) => {
       if (this.validateForm()) {
         if (this.contentElement.firstChild.textContent === nameProject) {
-          this.createTodo();
-          this.contentElement.appendChild(this.renderTodoList());
+          this.todosElement.appendChild(this.createTodo().renderTodo());
         }
       }
     });
@@ -32,7 +32,6 @@ export default class Project {
         `;
 
     div.addEventListener("click", (e) => {
-      console.log(this.nameProject, this.todosList);
       this.contentElement.textContent = "";
       let h2 = document.createElement("h2");
       h2.textContent = this.nameProject;
@@ -46,7 +45,7 @@ export default class Project {
   renderAddTodoButton() {
     let div = document.createElement("div");
     div.classList.add("add-todo");
-    div.innerHTML = `<button class="button">Add Todo ${this.nameProject}</button>`;
+    div.innerHTML = `<button class="button">Add Todo</button>`;
     div.addEventListener("click", (e) => {
       this.modal.modalOpen();
     });
@@ -66,16 +65,24 @@ export default class Project {
     const newTodo = new Todo(this.inputTodoName.value, this);
     newTodo.description = this.inputTodoDescription.value;
     this.todosList.push(newTodo);
+    return newTodo;
   }
 
   renderTodoList() {
-    let div = document.createElement("div");
-    div.classList.add("todos");
+    this.todosElement = document.createElement("div");
+    this.todosElement.classList.add("todos");
 
     for (let todo of this.todosList) {
-      div.appendChild(todo.renderTodo());
+      this.todosElement.appendChild(todo.renderTodo());
     }
 
-    return div;
+    return this.todosElement;
+  }
+
+  reloadTodoList(name) {
+    if (this.contentElement.firstChild.textContent === name) {
+      this.contentElement.removeChild(this.contentElement.lastChild);
+      this.contentElement.appendChild(this.renderTodoList());
+    }
   }
 }
