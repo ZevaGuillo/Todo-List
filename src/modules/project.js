@@ -12,9 +12,10 @@ export default class Project {
     this.inputTodoDescription = document.getElementById("todo-descripcion");
     this.buttonAddTodo = document.getElementById("form-add-todo-btn");
     this.buttonAddTodo.addEventListener("click", (e) => {
-      if (this.validateForm()) {
-        if (this.contentElement.firstChild.textContent === nameProject) {
+      if (this.contentElement.firstChild.textContent === nameProject) {
+        if (this.validateForm()) {
           this.todosElement.appendChild(this.createTodo().renderTodo());
+          this.modal.modalClose();
         }
       }
     });

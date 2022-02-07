@@ -1,3 +1,4 @@
+import image from "../images/background.svg";
 import Modal from "./modal";
 import Project from "./project";
 const listProjects = [];
@@ -7,11 +8,32 @@ const addProjectBtn = document.getElementById("form-addProject-btn");
 const nameProject = document.getElementById("nameProject");
 /* Project */
 const initialMenu = document.getElementById("initial-menu");
+const contentElement = document.getElementById("main");
+const homeElement = initialMenu.children[0];
+homeElement.addEventListener("click", (e) => {
+  renderHome();
+});
 const listProject = document.getElementById("list-project");
+/* Search */
+const inputSearch = document.getElementById("input-search");
+inputSearch.addEventListener("keyup", filterTodo);
+inputSearch.addEventListener("blur", (e) => (e.target.value = ""));
 
 /* ----Init -----*/
 
+function renderHome() {
+  contentElement.textContent = "";
+  let h2 = document.createElement("h2");
+  h2.textContent = "TO-DO List";
+  let img = document.createElement("img");
+  let url = image;
+  img.setAttribute("src", url);
+  contentElement.appendChild(h2);
+  contentElement.appendChild(img);
+}
+
 function initMenu() {
+  renderHome();
   let todayProject = new Project("Today");
   initialMenu.appendChild(
     todayProject.renderProjectItem("today", "fa-calendar-week")
@@ -45,5 +67,22 @@ addProjectBtn.addEventListener("click", (e) => {
     modal.modalClose();
   }
 });
+
+function filterTodo(e) {
+  let filterValue = e.target.value;
+  let namesTodos = document.querySelectorAll(".todo-content h3");
+  Array.from(namesTodos).forEach((i) => {
+    if (
+      i.textContent
+        .toLocaleLowerCase()
+        .trim()
+        .indexOf(filterValue.toLocaleLowerCase()) === -1
+    ) {
+      i.parentNode.parentNode.style.display = "none";
+    } else {
+      i.parentNode.parentNode.style.display = "";
+    }
+  });
+}
 
 export default initMenu;

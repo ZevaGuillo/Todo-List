@@ -10,6 +10,7 @@ export default class Todo {
     this.saveTodoButton.addEventListener("click", (e) => {
       this.saveTodo(e);
       this.project.reloadTodoList(this.project.nameProject);
+      this.modal.modalClose();
     });
   }
 

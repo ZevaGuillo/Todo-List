@@ -39,8 +39,8 @@ export default class Modal {
     this.modalContainer.style.opacity = "0";
     this.modalContainer.style.visibility = "hidden";
     this.modal.classList.add("modal-close");
-    this.formatModal();
     this.removeAlertForm();
+    this.formatModal();
   }
 
   alertForm() {
@@ -57,7 +57,7 @@ export default class Modal {
 
   removeAlertForm() {
     let div = this.modalchildren[1];
-    if (div !== undefined) {
+    if (div.className !== "form-container") {
       if (div.textContent === "Complete todos los campos") {
         this.modal.removeChild(div);
       }

@@ -38,6 +38,10 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
+img {
+  width: 50%;
+}
+
 .nav {
   position: fixed;
   top: 0;
