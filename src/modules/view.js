@@ -1,4 +1,5 @@
 import image from "../images/background.svg";
+import Storage from "./storage";
 import Modal from "./modal";
 import Project from "./project";
 const listProjects = [];
@@ -62,7 +63,7 @@ addProjectBtn.addEventListener("click", (e) => {
   } else {
     let project = new Project(nameProject.value);
     listProjects.push(project);
-
+    Storage.saveProject(project);
     listProject.appendChild(project.renderProjectItem("project", "fa-tasks"));
     modal.modalClose();
   }
