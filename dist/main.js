@@ -76,7 +76,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"64a67a8f4fcc7f8e65cf.svg\";\n\n//# sourceURL=webpack://todo-list/./src/images/background.svg?");
+eval("module.exports = __webpack_require__.p + \"10a9edda67b9434478c9.svg\";\n\n//# sourceURL=webpack://todo-list/./src/images/background.svg?");
 
 /***/ })
 
