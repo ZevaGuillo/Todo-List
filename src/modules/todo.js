@@ -1,7 +1,8 @@
+import Storage from "./storage";
 import Modal from "./modal";
 export default class Todo {
   constructor(nameTodo, project) {
-    this.project = project;
+    this.project = JSON.parse(JSON.stringify(project));
     this.nameTodo = nameTodo;
     this.description = "";
     this.clickEdit;
@@ -54,9 +55,6 @@ export default class Todo {
   createDeleteButton() {
     let i = document.createElement("i");
     i.classList.add("fas", "fa-trash");
-    i.addEventListener("click", (e) => {
-      this.project.todosList.splice(this.project.todosList.indexOf(), 1);
-    });
     return i;
   }
 

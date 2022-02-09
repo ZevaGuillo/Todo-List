@@ -1,3 +1,4 @@
+import Storage from "./storage";
 import Modal from "./modal";
 import Todo from "./todo";
 export default class Project {
@@ -6,6 +7,9 @@ export default class Project {
     this.todosList = [];
     this.todosElement;
     this.contentElement = document.getElementById("main");
+    this.contentElement.addEventListener("click", (e) => {
+      this.removeTodo(e.target);
+    });
     this.modal = new Modal("modal-todo", "modal-container-todo");
 
     this.inputTodoName = document.getElementById("todo-name");
@@ -16,12 +20,24 @@ export default class Project {
         if (this.validateForm()) {
           this.todosElement.appendChild(this.createTodo().renderTodo());
           this.modal.modalClose();
+          Storage.saveProject(Object.assign(this));
         }
       }
     });
   }
 
-  removeTodo() {}
+  removeTodo(element) {
+    if (this.contentElement.firstChild.textContent === this.nameProject) {
+      if (element.classList.contains("fa-trash")) {
+        this.todosElement.removeChild(element.parentNode.parentNode);
+        let name =
+          element.parentNode.parentNode.children[0].children[0].textContent;
+
+        this.todosList = this.todosList.filter((x) => x.nameTodo !== name);
+        Storage.saveProject(this);
+      }
+    }
+  }
 
   renderProjectItem(class1, classFas) {
     let div = document.createElement("div");
@@ -74,7 +90,9 @@ export default class Project {
     this.todosElement.classList.add("todos");
 
     for (let todo of this.todosList) {
-      this.todosElement.appendChild(todo.renderTodo());
+      let nTodo = new Todo(todo.nameTodo, this);
+      nTodo.description = todo.description;
+      this.todosElement.appendChild(nTodo.renderTodo());
     }
 
     return this.todosElement;

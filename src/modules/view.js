@@ -2,7 +2,8 @@ import image from "../images/background.svg";
 import Storage from "./storage";
 import Modal from "./modal";
 import Project from "./project";
-const listProjects = [];
+Storage.initLocalStorage();
+const listProjects = convertListProject(Storage.getListProject());
 const newProject = document.getElementById("newProject");
 
 const addProjectBtn = document.getElementById("form-addProject-btn");
@@ -36,17 +37,38 @@ function renderHome() {
 function initMenu() {
   renderHome();
   let todayProject = new Project("Today");
+  Storage.addProject(todayProject);
+  let storageToday = Storage.getProject("Today");
+  todayProject.todosList = storageToday.todosList;
   initialMenu.appendChild(
     todayProject.renderProjectItem("today", "fa-calendar-week")
   );
 
   let somedayProject = new Project("Someday");
+  Storage.addProject(somedayProject);
+  let storageSomeday = Storage.getProject("Someday");
+  somedayProject.todosList = storageSomeday.todosList;
   initialMenu.appendChild(
     somedayProject.renderProjectItem("someday", "fa-book")
   );
 
-  let newProject = new Project("Projects");
-  listProject.appendChild(newProject.renderProjectItem("project", "fa-tasks"));
+  renderListProject();
+}
+
+function renderListProject() {
+  for (let p of listProjects) {
+    listProject.appendChild(p.renderProjectItem("project", "fa-tasks"));
+  }
+}
+
+function convertListProject(list) {
+  let plist = [];
+  for (let p of list) {
+    let project = new Project(p.nameProject);
+    project.todosList = p.todosList;
+    plist.push(project);
+  }
+  return plist;
 }
 
 /* ---- MODAL ----- */
@@ -63,7 +85,7 @@ addProjectBtn.addEventListener("click", (e) => {
   } else {
     let project = new Project(nameProject.value);
     listProjects.push(project);
-    Storage.saveProject(project);
+    Storage.addProject(project);
     listProject.appendChild(project.renderProjectItem("project", "fa-tasks"));
     modal.modalClose();
   }
