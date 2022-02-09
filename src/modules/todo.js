@@ -1,8 +1,11 @@
 import Storage from "./storage";
+import Project from "./project";
 import Modal from "./modal";
 export default class Todo {
   constructor(nameTodo, project) {
-    this.project = JSON.parse(JSON.stringify(project));
+    let object = JSON.parse(JSON.stringify(project));
+    this.project = new Project(object.nameProject);
+    this.project.todosList = object.todosList;
     this.nameTodo = nameTodo;
     this.description = "";
     this.clickEdit;
@@ -10,8 +13,11 @@ export default class Todo {
     this.saveTodoButton = document.getElementById("form-save-todo-btn");
     this.saveTodoButton.addEventListener("click", (e) => {
       this.saveTodo(e);
+
       this.project.reloadTodoList(this.project.nameProject);
       this.modal.modalClose();
+      console.log(this.project.nameProject);
+      Storage.saveProject(this.project);
     });
   }
 
@@ -83,9 +89,18 @@ export default class Todo {
   saveTodo(e) {
     if (this.clickEdit === this.nameTodo) {
       let inputs = this.takeInputs();
+      this.project.todosList = Storage.getProject(
+        this.project.nameProject
+      ).todosList;
+      let todoListproject = this.project.todosList.filter(
+        (x) => x.nameTodo === this.nameTodo
+      );
 
       this.nameTodo = inputs[0].value;
       this.description = inputs[1].value;
+      console.log(todoListproject[0]);
+      todoListproject[0].nameTodo = this.nameTodo;
+      todoListproject[0].description = this.description;
     }
   }
 }

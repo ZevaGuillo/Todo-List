@@ -10,7 +10,6 @@ export default class Storage {
     let listProject = JSON.parse(localStorage.getItem("projects"));
     if (!listProject.includes(project.nameProject)) {
       listProject.push(project.nameProject);
-      console.log(project);
       localStorage.setItem("projects", JSON.stringify(listProject));
       localStorage.setItem(project.nameProject, JSON.stringify(project));
     }
@@ -62,7 +61,6 @@ export default class Storage {
 
     if (listProjectNames.includes(nameProject)) {
       let project = JSON.parse(localStorage.getItem(nameProject));
-      console.log(project.todoList);
     }
   }
 }

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
 
 * {
   margin: 0;
@@ -68,7 +69,8 @@ img {
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.5rem;
+  font-family: "Gochi Hand", cursive;
 }
 .logo i {
   font-size: 1.5rem;
@@ -307,7 +309,7 @@ p.link-text {
   border: 2px dashed red;
 } */
 
-.field:invalid:required {
+input.field:invalid:required {
   background: rgba(235, 89, 89, 0.212);
 }
 
