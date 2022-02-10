@@ -9,15 +9,17 @@ export default class Todo {
     this.nameTodo = nameTodo;
     this.description = "";
     this.clickEdit;
+    this.context;
     this.modal = new Modal("modal-todo-edit", "modal-container-todo-edit");
     this.saveTodoButton = document.getElementById("form-save-todo-btn");
     this.saveTodoButton.addEventListener("click", (e) => {
-      this.saveTodo(e);
+      if (this.context === project.nameProject) {
+        this.saveTodo(e);
 
-      this.project.reloadTodoList(this.project.nameProject);
-      this.modal.modalClose();
-      console.log(this.project.nameProject);
-      Storage.saveProject(this.project);
+        this.project.reloadTodoList(this.project.nameProject);
+        this.modal.modalClose();
+        Storage.saveProject(this.project);
+      }
     });
   }
 
@@ -68,6 +70,8 @@ export default class Todo {
     this.modal.modalOpen();
     let inputs = this.takeInputs();
 
+    this.context =
+      e.target.parentNode.parentNode.parentNode.parentNode.children[0].textContent;
     this.clickEdit =
       e.target.parentNode.parentNode.children[0].children[0].textContent;
     inputs[0].value = this.nameTodo;
@@ -82,25 +86,22 @@ export default class Todo {
         inputs.push(ele);
       }
     }
-
     return inputs;
   }
 
   saveTodo(e) {
-    if (this.clickEdit === this.nameTodo) {
-      let inputs = this.takeInputs();
-      this.project.todosList = Storage.getProject(
-        this.project.nameProject
-      ).todosList;
-      let todoListproject = this.project.todosList.filter(
-        (x) => x.nameTodo === this.nameTodo
-      );
+    let lis = this.takeInputs();
 
-      this.nameTodo = inputs[0].value;
-      this.description = inputs[1].value;
-      console.log(todoListproject[0]);
-      todoListproject[0].nameTodo = this.nameTodo;
-      todoListproject[0].description = this.description;
-    }
+    this.project.todosList = Storage.getProject(
+      this.project.nameProject
+    ).todosList;
+    let todoListproject = this.project.todosList.filter((x) => {
+      if (x.nameTodo === this.nameTodo) {
+        return x;
+      }
+    });
+
+    todoListproject[0].nameTodo = lis[0].value;
+    todoListproject[0].description = lis[1].value;
   }
 }

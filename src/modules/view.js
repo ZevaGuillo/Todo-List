@@ -2,7 +2,9 @@ import image from "../images/background.svg";
 import Storage from "./storage";
 import Modal from "./modal";
 import Project from "./project";
+
 Storage.initLocalStorage();
+
 const listProjects = convertListProject(Storage.getListProject());
 const newProject = document.getElementById("newProject");
 

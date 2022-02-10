@@ -22,7 +22,6 @@ export default class Modal {
   formatModal() {
     let formElements = this.modalForm.children[0];
 
-    console.log(formElements);
     for (let e of formElements) {
       if (e.classList.toString() === "field") {
         e.value = "";
@@ -52,7 +51,7 @@ export default class Modal {
     if (Array.from(this.modalchildren).length === 3) {
       return;
     } else {
-      this.modal.insertBefore(div, this.modalForm);
+      this.modal.appendChild(div);
     }
   }
 
